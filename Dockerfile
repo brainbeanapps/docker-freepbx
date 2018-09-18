@@ -107,6 +107,7 @@ RUN curl -fsSLo /tmp/freepbx.tar.gz http://mirror.freepbx.org/modules/packages/f
     --ampplayback="${FREEPBX_AMPPLAYBACK}" \
     && \
   rm -rf /tmp/freepbx && \
+  rm -rf /tmp/freepbx.tar.gz && \
   fwconsole stop --immediate --maxwait=60 --no-interaction -vv && \
   mysqladmin --socket=/var/lib/mysql/mysql.sock shutdown
 
