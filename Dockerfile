@@ -31,7 +31,9 @@ RUN yum -y update && \
 
 # Install PHP
 RUN yum -y install https://mirror.webtatic.com/yum/el7/webtatic-release.rpm && \
-  yum -y install php56w php56w-pdo php56w-mysql php56w-mbstring php56w-pear php56w-process php56w-xml php56w-opcache php56w-ldap php56w-intl php56w-soap && \
+  yum -y install php56w php56w-pdo php56w-mysql php56w-mbstring php56w-pear php56w-process php56w-xml php56w-opcache \
+    php56w-ldap php56w-intl php56w-soap php56w-gd \
+    && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   sed -i 's/\(^upload_max_filesize = \).*/\1128M/' /etc/php.ini && \
