@@ -80,7 +80,7 @@ RUN groupadd "${FREEPBX_GROUP}" && \
 WORKDIR /tmp/freepbx
 RUN curl -fsSLo /tmp/freepbx.tar.gz http://mirror.freepbx.org/modules/packages/freepbx/freepbx-${FREEPBX_VERSION}-latest.tgz && \
   yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm && \
-  yum -y install net-tools crontabs sox lame ffmpeg openssl gcc-c++ icu libicu-devel && \
+  yum -y install net-tools sendmail sendmail-cf crontabs sox lame ffmpeg openssl gcc-c++ icu libicu-devel && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   tar -xzf /tmp/freepbx.tar.gz -C . --strip-components=1 && \
