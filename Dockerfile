@@ -79,7 +79,7 @@ RUN groupadd "${FREEPBX_GROUP}" && \
 # Compile & install FreePBX
 WORKDIR /tmp/freepbx
 RUN curl -fsSLo /tmp/freepbx.tar.gz http://mirror.freepbx.org/modules/packages/freepbx/freepbx-${FREEPBX_VERSION}-latest.tgz && \
-  yum -y install net-tools crontabs sox openssl gcc-c++ icu libicu-devel && \
+  yum -y install net-tools crontabs sox lame openssl gcc-c++ icu libicu-devel && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   tar -xzf /tmp/freepbx.tar.gz -C . --strip-components=1 && \
