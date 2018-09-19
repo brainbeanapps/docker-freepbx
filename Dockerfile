@@ -69,7 +69,7 @@ RUN yum -y install httpd && \
 
 # Create user and fix the permissions
 RUN groupadd "${FREEPBX_GROUP}" && \
-  adduser "${FREEPBX_USER}" -g "${FREEPBX_GROUP}" -G "mysql" -m -c "Asterisk User" && \
+  adduser "${FREEPBX_USER}" -g "${FREEPBX_GROUP}" -G mysql,mail -m -c "Asterisk User" && \
   chown -R "${FREEPBX_USER}:${FREEPBX_GROUP}" "${FREEPBX_ASTETCDIR}" && \
   chown -R "${FREEPBX_USER}:${FREEPBX_GROUP}" "${FREEPBX_ASTVARLIBDIR}" && \
   chown -R "${FREEPBX_USER}:${FREEPBX_GROUP}" "${FREEPBX_ASTSPOOLDIR}" && \
@@ -86,6 +86,7 @@ RUN curl -fsSLo /tmp/freepbx.tar.gz http://mirror.freepbx.org/modules/packages/f
   yum clean all && \
   rm -rf /var/cache/yum && \
   tar -xzf /tmp/freepbx.tar.gz -C . --strip-components=1 && \
+  chmod g+rwx /var/spool/mqueue && \
   sed -i "s/-U asterisk/-U ${FREEPBX_USER}/" ./start_asterisk && \
   sed -i "s/-G asterisk/-G ${FREEPBX_GROUP}/" ./start_asterisk && \
   ./start_asterisk start && \
